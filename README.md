@@ -12,7 +12,7 @@ A responsive **HTML + CSS + JavaScript** component that displays loyalty “club
 ## Demo
 
 Open `index.html` in your browser to try it out.
-
+- or go here <https://kingpinzs.github.io/club_cards/>
 ---
 
 ## Features
