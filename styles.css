@@ -1,0 +1,298 @@
+    :root {
+        --bg: #0b0f12;
+        --fg: #e8eef5;
+        --muted: #a6b4c4;
+        --ease: cubic-bezier(.4, .9, .4, 1.2);
+        --card-w: 340px;
+        /* base, will clamp to viewport */
+        --card-ratio: 0.67;
+        /* height = width * ratio */
+        --gap: 90px;
+        /* horizontal offset between layers */
+        --depth: 100px;
+        /* how far back non-front cards appear */
+        --gold: #d4af37;
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    html,
+    body {
+        height: 100%
+    }
+
+    body {
+        margin: 0;
+        background: radial-gradient(1200px 800px at 50% -10%, #16202a, var(--bg));
+        color: var(--fg);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        display: grid;
+        place-items: center;
+        overflow: hidden
+    }
+
+    .wrap {
+        width: min(1200px, 100vw);
+        height: min(780px, 100vh);
+        padding: 28px 12px 44px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 12px
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: .3px
+    }
+
+    header .hint {
+        color: var(--muted);
+        font-size: 12px
+    }
+
+    .stage {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        place-items: center;
+        overflow: visible;
+        touch-action: pan-y
+    }
+
+    .rail {
+        position: relative;
+        width: 100%;
+        height: 580px;
+        touch-action: pan-y
+    }
+
+    .card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: min(var(--card-w), calc(100vw - 32px));
+        height: calc(min(var(--card-w), calc(100vw - 32px)) * var(--card-ratio));
+        transform: translate(-50%, -50%);
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, .08);
+        background: #0f1821;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, .45);
+        transition: transform .28s var(--ease), opacity .22s var(--ease), filter .22s var(--ease), box-shadow .22s var(--ease)
+    }
+
+    .card.is-front {
+        filter: saturate(1.05) brightness(1.06);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, .6);
+    }
+
+    /* Color stripe: club name centered and larger */
+    .stripe {
+        height: 72px;
+        display: grid;
+        place-items: center;
+        padding: 0 16px;
+        background: linear-gradient(135deg, var(--c1), var(--c2));
+        color: #0c0f12
+    }
+
+    .stripe .title {
+        font-weight: 900;
+        letter-spacing: .3px;
+        font-size: 24px;
+        line-height: 1.05;
+        text-align: center
+    }
+
+    /* Content area now holds requirement (left) and brand (right) */
+    .body {
+        position: relative;
+        display: block;
+        padding: 10px 14px 56px 14px
+    }
+
+    .meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px
+    }
+
+    .req {
+        font-size: 13px;
+        color: #dbe6f2;
+        opacity: .95
+    }
+
+    .brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 98px
+    }
+
+    .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: #ffffff10;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        font-size: 28px
+    }
+
+    .company {
+        margin-top: 6px;
+        font-size: 12px;
+        opacity: .95;
+        text-align: center;
+        color: #cfe0f5
+    }
+
+    .body p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35
+    }
+
+    /* Punch row pinned to the bottom */
+    .punches {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 8px;
+        height: 28px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+         padding-bottom: 20px;
+    }
+
+    .token {
+        width: 28px;
+        height: 28px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 50%;
+        background: transparent;
+        transition: transform .18s ease
+    }
+
+    .token svg {
+        width: 20px;
+        height: 20px;
+        opacity: .18;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .35))
+    }
+
+    .token.filled {
+        background: linear-gradient(180deg, rgba(212, 175, 55, 0.14), rgba(212, 175, 55, 0.06));
+        transform: scale(1.05)
+    }
+
+    .token.filled svg {
+        opacity: 1;
+        fill: var(--gold)
+    }
+
+    .controls {
+        display: flex;
+        gap: 10px;
+        justify-content: center
+    }
+
+    .btn {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, .14);
+        background: rgba(255, 255, 255, .07);
+        color: var(--fg);
+        padding: 10px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        letter-spacing: .25px;
+        transition: background .2s var(--ease), transform .08s, opacity .2s
+    }
+
+    .btn:hover {
+        background: rgba(255, 255, 255, .12)
+    }
+
+    .btn:active {
+        transform: translateY(1px) scale(.99)
+    }
+
+    .btn:disabled {
+        opacity: .5;
+        cursor: not-allowed
+    }
+
+    .loading {
+        color: var(--muted);
+        font-size: 13px
+    }
+
+    /* --- Responsive tweaks --- */
+    @media (max-width: 1200px) {
+        :root {
+            --card-w: 320px;
+            --gap: 80px;
+            --depth: 96px
+        }
+    }
+
+    @media (max-width: 900px) {
+        :root {
+            --card-w: 300px;
+            --gap: 72px;
+            --depth: 88px
+        }
+    }
+
+    @media (max-width: 720px) {
+        :root {
+            --card-w: 280px;
+            --gap: 64px;
+            --depth: 84px
+        }
+    }
+
+    @media (max-width: 560px) {
+        :root {
+            --card-w: 260px;
+            --gap: 56px;
+            --depth: 80px
+        }
+    }
+
+    @media (max-height: 680px) {
+        .rail {
+            height: 520px
+        }
+    }
+
+    @media (max-height: 600px) {
+        .rail {
+            height: 480px
+        }
+    }
+
+    @media (max-height: 520px) {
+        .rail {
+            height: 440px
+        }
+    }

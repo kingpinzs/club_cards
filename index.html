@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My club Cards</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap" aria-label="Layered loyalty cards slider">
+    <header>
+      <h1>My Club Cards • Punch To Earn</h1>
+      <div class="hint">Click a card • Arrow keys • Drag/Swipe</div>
+    </header>
+
+    <div class="stage" role="region" aria-roledescription="carousel">
+      <div class="rail" id="rail"></div>
+      <div class="loading" id="loading" style="position:absolute;top:14px;right:18px">Loading…</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="prev">◀ Prev</button>
+      <button class="btn" id="next">Next ▶</button>
+    </div>
+  </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
