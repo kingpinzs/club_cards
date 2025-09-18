@@ -1,4 +1,13 @@
-    :root {
+
+/**
+ * @file styles.css
+ * @author Jeremy King
+ * @date 2025-09-18
+ * @description This script handles the primary interactive logic for the site.
+ * @license See LICENSE file for details (e.g., PolyForm Noncommercial 1.0.0)
+ */
+
+:root {
         --bg: #0b0f12;
         --fg: #e8eef5;
         --muted: #a6b4c4;
