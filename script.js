@@ -1,3 +1,11 @@
+
+/**
+ * @file script.js
+ * @author Jeremy King
+ * @date 2025-09-18
+ * @description This script handles the primary interactive logic for the site.
+ * @license See LICENSE file for details (e.g., PolyForm Noncommercial 1.0.0)
+ */
 // --- MOCK API (replace with real fetch calls) ---
 // Simulates network latency and returns JSON-like objects
 function fetchClubs() {
